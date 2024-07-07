@@ -1,0 +1,17 @@
+<div class="timeline">
+    <div class="slider">
+        <mat-slider [min]="0" [max]="giorniTotali" [step]="1" [displayWith]="oggi" discrete [disabled]="!sliderEnabled">
+            <input [value]="giornoCorrente" matSliderThumb (valueChange)="onSliderChange($event)">
+        </mat-slider>
+    </div>
+    <div class="hint">Puoi riprogrammare l'agenda in qualsiasi momento spostando il cursore e verificando il programma sottostante</div>
+    <div class="periodi">
+        <div class="periodo" *ngFor="let quartiere of quartieri" [ngStyle]="{ flex: getSettimaneQuartiere(quartiere) }" [ngClass]="quartiere"></div>
+    </div>
+    <ng-container *ngIf="periodi.length>0; else Empty">
+        <app-agenda-percorso [periodi]="periodi"></app-agenda-percorso>
+    </ng-container>
+    <ng-template #Empty>
+        <div class="empty">Non è stata ancora impostata la data di inizio percorso</div>
+    </ng-template>
+</div>

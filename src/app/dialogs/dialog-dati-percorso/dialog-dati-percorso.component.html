@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>{{ editMode ? 'Modifica' : 'Aggiungi' }} percorso {{ formPercorso.value.tipo=='GRUPPO' ? 'di gruppo':'individuale' }}</h2>
+<mat-dialog-content>
+    <form [formGroup]="formPercorso">
+        <div class="row">
+            <mat-form-field appearance="outline" class="nome">
+                <mat-label>Nome percorso</mat-label>
+                <input matInput type="text" formControlName="nome" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="inizio">
+                <mat-label>Data inizio percorso</mat-label>
+                <input matInput type="date" formControlName="inizioPercorso" (change)="inputChanged()" />
+            </mat-form-field>
+            <div id="toggle-settimane">
+                <mat-button-toggle-group formControlName="durataFunzioneEsecutivaGiorni" required>
+                    <mat-button-toggle value="7">
+                        <div class="tipo-percorso">
+                            <div class="tipo">Standard</div>
+                            <div class="descrizione">1 settimana per quartiere</div>
+                        </div>
+                    </mat-button-toggle>
+                    <mat-button-toggle value="14">
+                        <div class="tipo-percorso">
+                            <div class="tipo">Intensivo</div>
+                            <div class="descrizione">2 settimane per quartiere</div>
+                        </div>
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+        </div>
+        <div class="section">Aggiungi quartieri al percorso</div>
+        <div class="row">
+            <mat-slide-toggle color="primary" formControlName="periodoIntroduzione">&nbsp;Introduzione al CODING</mat-slide-toggle>
+            <div class="hint">Durata fissa di 1 settimana</div>
+        </div>
+        <div class="row">
+            <mat-slide-toggle color="primary" formControlName="mediaLiteracy">&nbsp;Media Literacy</mat-slide-toggle>
+            <div class="hint">Durata fissa di 2 settimane (disponibile da settembre 2024)</div>
+        </div>
+    </form>
+    <app-timeline-percorso [percorso]="percorso" (onChange)="sliderChanged($event)"></app-timeline-percorso>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-flat-button *ngIf="isAdmin && editMode" (click)="deletePercorso()"><mat-icon>delete</mat-icon>Elimina</button>
+    <div class="filler"></div>
+    <button mat-flat-button mat-dialog-close>Annulla</button>
+    <button mat-flat-button color="primary" [disabled]="formPercorso.invalid" (click)="confirm()">Ok</button>
+</mat-dialog-actions>

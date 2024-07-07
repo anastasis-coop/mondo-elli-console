@@ -1,0 +1,57 @@
+<ng-container *ngIf="operatori.length>0; else NoData">
+    <table mat-table *ngIf="dataSource" [dataSource]="dataSource" matSort [class.selectable]="selectable">
+
+        <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Nome
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.nome }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cognome">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Cognome
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.cognome }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Email
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.username }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="referente">
+            <th mat-header-cell *matHeaderCellDef>
+                Referente
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-icon *ngIf="element.referente">check</mat-icon>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="percorsi">
+            <th mat-header-cell *matHeaderCellDef>
+                Percorsi
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="editPercorsi(element)"><mat-icon>directions_run</mat-icon></button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef>
+                Modifica
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="edit(element)"><mat-icon [fontIcon]="getEditIcon(element)"></mat-icon></button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></tr>
+    </table>
+</ng-container>
+<ng-template #NoData>
+    <div class="no-data">Nessun operatore</div>
+</ng-template>

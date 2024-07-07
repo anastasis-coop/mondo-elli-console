@@ -1,0 +1,14 @@
+<ng-container *ngIf="risultati && risultati.funzione;else Empty">
+    <app-monitor-funzione-canale [canale]="risultati.canaleVisivo"></app-monitor-funzione-canale>
+    <app-monitor-funzione-canale [canale]="risultati.canaleUditivoVerbale"></app-monitor-funzione-canale>
+</ng-container>
+<ng-template #Empty>
+    <div class="white-box">
+        <ng-container *ngIf="datiCaricati;else Loading">
+            <div class="empty">Nessun canale presente</div>
+        </ng-container>
+    </div>
+</ng-template>
+<ng-template #Loading>
+    <app-loading></app-loading>
+</ng-template>

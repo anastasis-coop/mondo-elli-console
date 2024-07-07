@@ -1,0 +1,64 @@
+@import '../../../styles/colors.scss';
+
+:host {
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    height: 40px;
+
+    .header-canale {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        padding-left: 20px;
+        color: $blu;
+        font-size: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .header-livello-raggiunto {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-right: 20px;
+    }
+}
+
+.exercises-list {
+    width: 100%;
+
+    .mat-column-data {
+        width: 30%;
+    }
+
+    .mat-column-livello {
+        width: 20%;
+    }
+
+    .mat-column-corretti {
+        width: 10%;
+    }
+
+    .mat-column-errati {
+        width: 10%;
+    }
+
+    .mat-column-saltati {
+        width: 10%;
+    }
+
+    .mat-column-accuratezza {
+        width: 10%;
+    }
+
+    .mat-column-stato-livello {
+        width: 10%;
+    }
+}
+
+.empty {
+    font-style: italic;
+}

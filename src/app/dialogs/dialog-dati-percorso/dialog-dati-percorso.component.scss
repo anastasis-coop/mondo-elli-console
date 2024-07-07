@@ -1,0 +1,76 @@
+@import '../../../styles/colors.scss';
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    &:first-child {
+        align-items: flex-start;
+    }
+
+    .display-anno-scolastico {
+        padding-bottom: 24px;
+    }
+
+    mat-form-field,
+    mat-button-toggle {
+        flex: 1;
+
+        &.nome {
+            flex: 3;
+        }
+
+        &.inizio {
+            flex: 2;
+        }
+    }
+
+    #toggle-settimane {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .hint {
+        font-size: 13px;
+    }
+
+    .mat-button-toggle-group {
+        flex: auto;
+
+        .mat-button-toggle-checked {
+            background-color: $azzurro;
+        }
+    }
+
+    .mat-icon {
+        color: $blu;
+    }
+
+    .tipo-percorso {
+        line-height: 1.25;
+        padding: 10px;
+
+        .tipo {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+}
+
+.section {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $blu;
+}
+
+.filler {
+    flex: 3;
+}
+
+.mdc-text-field__input::-webkit-calendar-picker-indicator {
+    display: block !important;
+}

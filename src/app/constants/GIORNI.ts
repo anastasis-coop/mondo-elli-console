@@ -1,0 +1,3 @@
+export const GIORNI_INTRODUZIONE = 7;
+export const DEFAULT_GIORNI_QUARTIERE = 7;
+export const GIORNI_MEDIA_LITERACY = 14;

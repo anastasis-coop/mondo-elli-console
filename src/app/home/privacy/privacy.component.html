@@ -1,0 +1,74 @@
+<div class="title">Accettazione delle condizioni di servizio</div>
+<div class="white-box" id="privacy">
+    <ng-container *ngIf="datiCaricati; else Loading">
+        <div class="privacy-policy-container">
+            <div class="privacy-policy-content">
+                <p>
+                    <strong>
+                        Ciao {{ operatore?.nome }}, Il Mondo degli Elli ti dà il benvenuto!
+                    </strong>
+                </p>
+                <p>
+                    <strong>
+                        Prima di poter procedere con l'attivazione della piattaforma è necessario accettare
+                        le condizioni di servizio e di trattamento dei dati personali.
+                    </strong>
+                </p>
+                <h2>Accettazione informativa sul trattamento dati e Privacy</h2>
+                <p>
+                    I dati del soggetto interessato sono finalizzati alla sottoscrizione del servizio, e saranno trattati
+                    per l'accesso al portale <strong>www.mondoelli.it</strong>. Il portale è finalizzato all’uso e alla gestione
+                    del modello di intervento educativo denominato “Il mondo degli Elli”, che ha lo scopo di allenare i bambini
+                    e i ragazzi sulle Funzioni Esecutive per favorire e promuovere lo sviluppo di abilità che possano avere
+                    una ricaduta sugli apprendimenti e sullo stare bene in classe e/o all’interno del gruppo educativo
+                    a cui si fa riferimento.
+                    Si dichiara che i dati saranno trattati in forma rigorosamente anonima ed in modalità aggregata.
+                    Riguardo al trattamento dei dati personali, si può consultare l'
+                    <a target="_blank" href="https://privacy.example.com/mondoelli-privacy.pdf">
+                        Informativa ai sensi dell'articolo 13 del regolamento UE 679/2016
+                    </a>.
+                </p>
+                <div class="accept">
+                    <mat-checkbox labelPosition="after" [(ngModel)]="accepted1">
+                        Dichiaro di aver letto e di accettare l'informativa di cui sopra
+                    </mat-checkbox>
+                </div>
+                <ng-container *ngIf="operatore?.referente">
+                    <h2>Data Processing Agreement ai sensi dell'articolo 28 del regolamento UE 679/2016</h2>
+                    <p>Il/la sottoscritto/a {{ operatore?.nome }} {{ operatore?.cognome }} conferma la presa visione del
+                        <a target="_blank" href="https://privacy.example.com/mondoelli-dpa.pdf">
+                            Data Processing Agreement ai sensi dell'articolo 28 del regolamento UE 679/2016
+                        </a>.
+                    </p>
+                    <div class="accept">
+                        <mat-checkbox labelPosition="after" [(ngModel)]="accepted2">Confermo</mat-checkbox>
+                    </div>
+                    <h2>Contratto di servizio e autorizzazione al trattamento dei dati per l'assistenza tecnica</h2>
+                    <p>
+                        Confermo di aver letto il <a target="_blank" href="https://privacy.example.com/mondoelli-servizi-informatici.pdf">
+                            Contratto di servizi informatici per l'accesso al percorso Il Mondo degli Elli
+                        </a>.
+                    </p>
+                    <p>
+                        Per maggiori informazioni sul servizio di Assistenza Tecnica, leggi la
+                        <a target="_blank" href="https://privacy.example.com/mondoelli-assistenza-tecnica.pdf">
+                            Procedura di assistenza tecnica Anastasis e relativa gestione dei dati</a>.
+                    </p>
+                    <div class="accept">
+                        <div>
+                            <mat-checkbox labelPosition="after" [(ngModel)]="accepted3">Accetto il contratto di servizio e l’assistenza tecnica da esso prevista</mat-checkbox>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div class="footer">
+            <button mat-raised-button (click)="cancel()">Annulla</button>
+            <button mat-raised-button (click)="confirm()" color="primary" [disabled]="!allAccepted">Continua</button>
+        </div>
+        <mat-error *ngIf="showError">Si è verificato un errore durante il salvataggio</mat-error>
+    </ng-container>
+    <ng-template #Loading>
+        <app-loading></app-loading>
+    </ng-template>
+</div>

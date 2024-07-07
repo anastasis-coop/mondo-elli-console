@@ -1,0 +1,5 @@
+<div class="sidebar">
+    <button *ngFor="let item of menu; let i = index" mat-flat-button [class.selected]="i===current" (click)="select(i)">
+        <mat-icon *ngIf="item.icon" [fontIcon]="item.icon"></mat-icon>{{ item.label }}
+    </button>
+</div>

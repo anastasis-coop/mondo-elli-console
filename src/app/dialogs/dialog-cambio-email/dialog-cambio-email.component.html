@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Modifica email</h2>
+<mat-dialog-content>
+    <form [formGroup]="formEmail">
+        <mat-form-field appearance="outline" class="username">
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName="username" />
+            <mat-error *ngIf="testError('username','email')">Email non valida</mat-error>
+            <mat-error *ngIf="testError('username','accountDoppio')">Email già esistente</mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-flat-button mat-dialog-close>Annulla</button>
+    <button mat-flat-button color="primary" [disabled]="formEmail.invalid" (click)="confirm()">Ok</button>
+</mat-dialog-actions>

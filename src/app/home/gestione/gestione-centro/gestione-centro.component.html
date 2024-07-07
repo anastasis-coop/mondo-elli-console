@@ -1,0 +1,74 @@
+<ng-container *ngIf="showPercorso; else Centro">
+    <button mat-icon-button class="back-button" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+    <ng-container *ngIf="datiCaricati; else LoadingPercorso">
+        <app-gestione-percorso [archivio]="false" [centro]="centro" [referente]="referente" [percorso]="percorso" (reloadCentro)="reloadCentro()"></app-gestione-percorso>
+    </ng-container>
+    <ng-template #LoadingPercorso>
+        <div class="loading-percorso white-box content-box">
+            <app-loading></app-loading>
+        </div>
+    </ng-template>
+</ng-container>
+<ng-template #Centro>
+    <ng-container *ngIf="centro">
+        <div class="header">
+            <div class="title">{{ centro.nome }}</div>
+            <button mat-flat-button color="accent" *ngIf="referente && datiCaricati" (click)="editCentro()">Modifica</button>
+        </div>
+        <div class="white-box content-box">
+            <table>
+                <tr>
+                    <td class="key">Nome centro</td>
+                    <td class="val">{{ centro.nome }}</td>
+                </tr>
+                <tr *ngIf="centro.codice">
+                    <td class="key">Codice</td>
+                    <td class="val">{{ centro.codice }}</td>
+                </tr>
+                <tr>
+                    <td class="key">Comune</td>
+                    <td class="val">{{ centro.comune.nome }} ({{ centro.comune.targa }})</td>
+                </tr>
+            </table>
+        </div>
+        <div class="header">
+            <div class="title">Operatori</div>
+            <button mat-flat-button color="accent" *ngIf="referente && datiCaricati" (click)="createOperatore()"><mat-icon>add</mat-icon>Aggiungi operatore</button>
+        </div>
+        <div class="white-box content-box">
+            <ng-container *ngIf="datiCaricati; else Loading">
+                <app-table-operatori #TableOperatori [operatori]="operatori" [editable]="referente" (onEdit)="editOperatore($event)" (onEditPercorsi)="editPercorsiOperatore($event)"></app-table-operatori>
+            </ng-container>
+        </div>
+        <ng-container *ngIf="referente && datiCaricati">
+            <div class="header">
+                <div class="title">Percorsi di gruppo</div>
+                <button mat-flat-button color="accent" *ngIf="referente" (click)="createPercorsoGruppo()"><mat-icon>add</mat-icon>Aggiungi percorso</button>
+            </div>
+            <div class="white-box content-box">
+                <ng-container *ngIf="datiCaricati; else Loading">
+                    <app-table-percorsi #TablePercorsiGruppo [percorsi]="percorsiCentroGruppo" [editable]="true" [selectable]="true" (selected)="selectPercorso($event)" (onEdit)="editPercorso($event)"
+                        (onEditOperatori)="editOperatoriPercorso($event)"></app-table-percorsi>
+                </ng-container>
+            </div>
+            <div class="header">
+                <div class="title">Percorsi individuali</div>
+                <button mat-flat-button color="accent" *ngIf="referente" (click)="createPercorsoSingolo()"><mat-icon>add</mat-icon>Aggiungi percorso</button>
+            </div>
+            <div class="white-box content-box">
+                <ng-container *ngIf="datiCaricati; else Loading">
+                    <app-table-percorsi #TablePercorsiSingoli [percorsi]="percorsiCentroSingoli" [editable]="true" [selectable]="true" (selected)="selectPercorso($event)" (onEdit)="editPercorso($event)"
+                        (onEditOperatori)="editOperatoriPercorso($event)"></app-table-percorsi>
+                </ng-container>
+            </div>
+            <app-accordion title="Percorsi archiviati" subject="percorsi archiviati">
+                <ng-container *ngIf="datiCaricati; else Loading">
+                    <app-table-percorsi-archivio [percorsi]="percorsiCentroArchivio"></app-table-percorsi-archivio>
+                </ng-container>
+            </app-accordion>
+        </ng-container>
+    </ng-container>
+</ng-template>
+<ng-template #Loading>
+    <app-loading></app-loading>
+</ng-template>

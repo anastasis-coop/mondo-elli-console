@@ -1,0 +1,22 @@
+<div id="viewport">
+    <div id="scale-box" [ngStyle]="scaledStyle">
+        <ng-container *ngIf="loggedIn; else Anonymous">
+            <app-header></app-header>
+            <div class="box">
+                <div class="innerbox">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #Anonymous>
+            <div class="responsive-layout">
+                <div class="half">
+                    <app-cover></app-cover>
+                </div>
+                <div class="half">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>

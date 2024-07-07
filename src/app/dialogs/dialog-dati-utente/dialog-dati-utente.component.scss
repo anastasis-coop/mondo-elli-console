@@ -1,0 +1,21 @@
+.row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    min-width: 720px;
+
+    mat-form-field {
+        flex: 1;
+
+        &.password {
+            mat-icon {
+                position: absolute;
+                right: 0;
+            }
+        }
+    }
+}
+
+.gruppo-vuoto {
+    margin-top: 20px;
+}

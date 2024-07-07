@@ -1,0 +1,12 @@
+.percorso {
+    display: flex;
+    flex-direction: row;
+
+    .nome {
+        min-width: 200px;
+    }
+
+    .tipo {
+        min-width: 100px;
+    }
+}

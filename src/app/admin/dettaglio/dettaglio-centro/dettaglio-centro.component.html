@@ -1,0 +1,84 @@
+<div class="main-container">
+    <ng-container *ngIf="datiCaricati; else Loading">
+        <ng-container *ngIf="centro; else NonTrovato">
+            <div class="title-box">
+                <div class="title">Dettaglio centro {{ centro.id }}</div>
+            </div>
+            <div class="white-box detail">
+                <div class="subtitle-row">
+                    <div class="subtitle">
+                        <mat-icon class="icon">business</mat-icon>
+                        Centro {{ centro.nome }}
+                    </div>
+                </div>
+                <div class="property">
+                    <div class="label">Nome</div>
+                    <div class="value">{{ centro.nome }}</div>
+                </div>
+                <div class="property">
+                    <div class="label">Codice</div>
+                    <div class="value">{{ centro.codice }}</div>
+                </div>
+                <div class="property" *ngIf="centro.comune">
+                    <div class="label">Comune</div>
+                    <div class="value">{{ centro.comune.nome }} ({{ centro.comune.targa }})</div>
+                </div>
+            </div>
+            <div class="actions-row">
+                <button mat-flat-button color="primary" (click)="editCentro()"><mat-icon class="icon">edit</mat-icon> Modifica centro</button>
+            </div>
+            <div class="white-box detail">
+                <div class="subtitle-row">
+                    <div class="subtitle">
+                        <mat-icon class="icon">supervisor_account</mat-icon>
+                        Operatori
+                    </div>
+                </div>
+                <ng-container *ngIf="operatori.length>0; else NessunOperatore">
+                    <div class="property" *ngFor="let operatore of operatori">
+                        <div class="label">{{ operatore.username }}</div>
+                        <div class="value"><a (click)="gotoOperatore(operatore.id)">{{ operatore.nome }} {{ operatore.cognome }}</a></div>
+                    </div>
+                </ng-container>
+                <ng-template #NessunOperatore>
+                    <div class="no-data">Nessun operatore da visualizzare</div>
+                </ng-template>
+            </div>
+            <div class="actions-row">
+                <button mat-flat-button color="primary" (click)="createOperatore()">Crea nuovo operatore</button>
+            </div>
+            <div class="white-box detail">
+                <div class="subtitle-row">
+                    <div class="subtitle">
+                        <mat-icon class="icon">directions_run</mat-icon>
+                        Percorsi
+                    </div>
+                </div>
+                <ng-container *ngIf="percorsi.length>0; else NessunPercorso">
+                    <div class="property" *ngFor="let percorso of percorsi">
+                        <div class="label">{{ getDescrizioneTipo(percorso.tipo) }}</div>
+                        <div class="value"><a (click)="gotoPercorso(percorso.id)">{{ percorso.nome }}</a></div>
+                    </div>
+                </ng-container>
+                <ng-template #NessunPercorso>
+                    <div class="no-data">Nessun percorso da visualizzare</div>
+                </ng-template>
+            </div>
+            <div class="actions-row">
+                <button mat-flat-button color="primary" (click)="createPercorsoGruppo()">Crea nuovo gruppo</button>
+                <button mat-flat-button color="primary" (click)="createPercorsoSingolo()">Crea nuovo individuale</button>
+            </div>
+        </ng-container>
+    </ng-container>
+    <ng-template #NonTrovato>
+        <div class="not-found subtitle-row">
+            <div class="subtitle">
+                <mat-icon class="icon">business</mat-icon>
+                Centro non trovato
+            </div>
+        </div>
+    </ng-template>
+</div>
+<ng-template #Loading>
+    <app-loading></app-loading>
+</ng-template>

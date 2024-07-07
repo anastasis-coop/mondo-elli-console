@@ -1,0 +1,7 @@
+<ng-container *ngIf="passwordTokenError; else Loading">
+    <p>Il link di accesso che stai utilizzando non è valido oppure è scaduto.</p>
+    <p><a routerLink="/">Torna al login</a> e prova ad accedere con le credenziali in tuo possesso.</p>
+</ng-container>
+<ng-template #Loading>
+    <div class="loading">Accesso in corso&hellip;</div>
+</ng-template>

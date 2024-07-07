@@ -1,0 +1,68 @@
+<div class="main-container">
+    <ng-container *ngIf="datiCaricati; else Loading">
+        <ng-container *ngIf="operatore; else NonTrovato">
+            <div class="title-box">
+                <div class="title">Dettaglio operatore {{ operatore.id }}</div>
+            </div>
+            <div class="white-box detail">
+                <div class="subtitle-row">
+                    <div class="subtitle">
+                        <mat-icon class="icon">supervisor_account</mat-icon>
+                        Operatore {{ operatore.nome }} {{ operatore.cognome }}
+                    </div>
+                </div>
+                <div class="property">
+                    <div class="label">Email</div>
+                    <div class="value">{{ operatore.username }}</div>
+                </div>
+                <div class="property">
+                    <div class="label">Nome</div>
+                    <div class="value">{{ operatore.nome }}</div>
+                </div>
+                <div class="property">
+                    <div class="label">Cognome</div>
+                    <div class="value">{{ operatore.cognome }}</div>
+                </div>
+                <div class="property" *ngIf="centro">
+                    <div class="label">Centro</div>
+                    <div class="value"><a (click)="gotoCentro(centro.id)">{{ centro.nome }}</a></div>
+                </div>
+            </div>
+            <div class="actions-row">
+                <button mat-flat-button color="primary" (click)="editOperatore()"><mat-icon class="icon">edit</mat-icon>Modifica operatore</button>
+                <button mat-flat-button color="primary" (click)="impersona()"><mat-icon class="icon">redo</mat-icon>Impersona operatore</button>
+            </div>
+            <div class="white-box detail">
+                <div class="subtitle-row">
+                    <div class="subtitle">
+                        <mat-icon class="icon">directions_run</mat-icon>
+                        Percorsi
+                    </div>
+                </div>
+                <ng-container *ngIf="percorsi.length>0; else NessunPercorso">
+                    <div class="property" *ngFor="let percorso of percorsi">
+                        <div class="label">Nome</div>
+                        <div class="value"><a (click)="gotoPercorso(percorso.id)">{{ percorso.nome }}</a></div>
+                    </div>
+                </ng-container>
+                <ng-template #NessunPercorso>
+                    <div class="no-data">Nessun percorso da visualizzare</div>
+                </ng-template>
+            </div>
+            <div class="actions-row">
+                <button mat-flat-button color="primary" (click)="selectPercorsi()">Seleziona percorsi</button>
+            </div>
+        </ng-container>
+    </ng-container>
+    <ng-template #NonTrovato>
+        <div class="not-found subtitle-row">
+            <div class="subtitle">
+                <mat-icon class="icon">supervisor_account</mat-icon>
+                Operatore non trovato
+            </div>
+        </div>
+    </ng-template>
+</div>
+<ng-template #Loading>
+    <app-loading></app-loading>
+</ng-template>

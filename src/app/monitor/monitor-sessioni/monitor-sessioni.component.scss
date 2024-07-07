@@ -1,0 +1,31 @@
+:host {
+    width: 100%;
+}
+
+.session-list {
+    width: 100%;
+
+    .mat-column-data {
+        width: 20%;
+    }
+
+    .mat-column-quartiere {
+        width: 30%;
+    }
+
+    .mat-column-tempo-netto {
+        width: 15%;
+    }
+
+    .mat-column-completata {
+        width: 15%;
+    }
+
+    .mat-column-steps {
+        width: 20%;
+    }
+}
+
+.empty {
+    font-style: italic;
+}

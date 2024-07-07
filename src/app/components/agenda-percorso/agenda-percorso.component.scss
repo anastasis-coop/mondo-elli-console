@@ -1,0 +1,32 @@
+.title {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0 5px 10px;
+}
+
+table {
+    font-size: 16px;
+
+    td.periodo {
+        width: 28px;
+    }
+
+    td.label {
+        padding-left: 10px;
+    }
+
+    td.dal,
+    td.al {
+        text-align: right;
+    }
+
+    td.inizio,
+    td.fine {
+        width: 15%;
+        text-align: right;
+    }
+}
+
+.empty {
+    font-style: italic;
+}

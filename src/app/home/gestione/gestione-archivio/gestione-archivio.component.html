@@ -1,0 +1,24 @@
+<ng-container *ngIf="showPercorso; else Percorsi">
+    <button mat-icon-button class="back-button" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+    <ng-container *ngIf="datiCaricati; else LoadingPercorso">
+        <app-gestione-percorso [archivio]="true" [centro]="centro" [referente]="referente" [percorso]="percorso"></app-gestione-percorso>
+    </ng-container>
+    <ng-template #LoadingPercorso>
+        <div class="loading-percorso white-box content-box">
+            <app-loading></app-loading>
+        </div>
+    </ng-template>
+</ng-container>
+<ng-template #Percorsi>
+    <div class="header">
+        <div class="title">Percorsi archiviati</div>
+    </div>
+    <div class="white-box content-box">
+        <ng-container *ngIf="datiCaricati; else Loading">
+            <app-table-percorsi-archivio #TablePercorsiArchiviati [percorsi]="percorsiArchiviati" (selected)="selectPercorso($event)"></app-table-percorsi-archivio>
+        </ng-container>
+    </div>
+</ng-template>
+<ng-template #Loading>
+    <app-loading></app-loading>
+</ng-template>

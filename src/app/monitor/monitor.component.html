@@ -1,0 +1,42 @@
+<div>
+    <app-sidebar [menu]="sidebarMenu" (selected)="sidebarSelect($event)"></app-sidebar>
+    <div class="big-icon" *ngIf="bigIcon">
+        <img [src]="bigIcon">
+    </div>
+</div>
+<div class="monitor">
+    <button mat-icon-button class="back-button" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+    <div class="header">
+        <div class="title">{{ percorso?.nome }} - {{ utente?.username }}</div>
+        <button *ngIf="!archivio" mat-flat-button color="accent" (click)="editUtente()">Modifica</button>
+    </div>
+    <div class="white-box content-box">
+        <div><strong>Username:</strong> {{ utente?.username }}</div>
+        <div><strong>Nome:</strong> {{ utente?.nomeEllo }}</div>
+        <div><strong>Facilitato (livello 0):</strong> {{ utente?.facilitato ? 'SI':'NO' }}</div>
+    </div>
+    <ng-container *ngIf="current==0">
+        <app-monitor-percorso [idUtente]="idUtente"></app-monitor-percorso>
+    </ng-container>
+    <ng-container *ngIf="current==1">
+        <app-monitor-sessioni [idUtente]="idUtente"></app-monitor-sessioni>
+    </ng-container>
+    <ng-container *ngIf="current==2">
+        <app-monitor-esplorazione [idUtente]="idUtente"></app-monitor-esplorazione>
+    </ng-container>
+    <ng-container *ngIf="current==3">
+        <app-monitor-funzione-esecutiva [funzione]="'controlloInterferenza'" [idUtente]="idUtente"></app-monitor-funzione-esecutiva>
+    </ng-container>
+    <ng-container *ngIf="current==4">
+        <app-monitor-funzione-esecutiva [funzione]="'inibizioneRisposta'" [idUtente]="idUtente"></app-monitor-funzione-esecutiva>
+    </ng-container>
+    <ng-container *ngIf="current==5">
+        <app-monitor-funzione-esecutiva [funzione]="'memoriaLavoro'" [idUtente]="idUtente"></app-monitor-funzione-esecutiva>
+    </ng-container>
+    <ng-container *ngIf="current==6">
+        <app-monitor-funzione-esecutiva [funzione]="'flessibilitaCognitiva'" [idUtente]="idUtente"></app-monitor-funzione-esecutiva>
+    </ng-container>
+    <ng-container *ngIf="current==7">
+        <app-monitor-quiz [idUtente]="idUtente"></app-monitor-quiz>
+    </ng-container>
+</div>

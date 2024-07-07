@@ -1,0 +1,59 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/colors.scss';
+
+.topline {
+    height: 20px;
+    background-color: $azzurro-scuro;
+}
+
+.toolbar {
+    display: flex;
+    margin: 0 30px;
+    height: 70px;
+    align-items: center;
+    justify-content: space-between;
+    @include no-select();
+
+    &.login {
+        justify-content: center;
+    }
+
+    .logo-title {
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 30px;
+
+        .logo {
+            width: 100px;
+            height: 50px;
+            background: url('../../../assets/logo.png') no-repeat center;
+        }
+
+        .title-subtitle {
+            color: $blu-scuro;
+            line-height: 1;
+            text-align: center;
+
+            .title {
+                font-size: 40px;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            .subtitle {
+                font-size: 25.5px;
+            }
+        }
+    }
+
+    button.main-menu {
+        min-width: 180px;
+        border: 2px solid $blu-scuro;
+    }
+}
+
+.mat-menu-item {
+    font-size: 13px;
+}

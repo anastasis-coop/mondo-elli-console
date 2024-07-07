@@ -1,0 +1,22 @@
+:host {
+    width: 100%;
+}
+
+table {
+
+    .mat-column-data,
+    .mat-column-quartiere,
+    .mat-column-corretto,
+    .mat-column-tempo_impiegato {
+        width: 10%;
+    }
+
+    .mat-column-domanda,
+    .mat-column-risposta {
+        width: 30%;
+    }
+}
+
+.empty {
+    font-style: italic;
+}

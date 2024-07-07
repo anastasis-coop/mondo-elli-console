@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Seleziona operatori</h2>
+<mat-dialog-content>
+    <mat-selection-list (selectionChange)="listChanged($event)">
+        <mat-list-option *ngFor="let operatore of data.operatoriCentro" [value]="operatore.id" [selected]="data.operatoriPercorso.includes(operatore.id)" checkboxPosition="before">
+            {{operatore.username}} {{operatore.nome}} {{operatore.cognome}}
+        </mat-list-option>
+    </mat-selection-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-flat-button mat-dialog-close>Annulla</button>
+    <button mat-flat-button color="primary" (click)="confirm()">Ok</button>
+</mat-dialog-actions>

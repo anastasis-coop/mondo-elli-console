@@ -1,0 +1,42 @@
+@import '../../../styles/colors.scss';
+
+:host {
+    width: 100%;
+}
+
+.percorso-list {
+    width: 100%;
+
+    .mat-column-quartiere {
+        width: 30%;
+    }
+
+    .mat-column-completato {
+        width: 20%;
+        text-align: center;
+    }
+
+    .mat-column-visivo {
+        width: 15%;
+    }
+
+    .mat-column-verbale {
+        width: 20%;
+    }
+
+    .mat-column-numero-sessioni {
+        width: 15%;
+    }
+}
+
+tr.current {
+    background-color: $azzurro-chiarissimo;
+
+    &:hover {
+        background-color: $azzurro-chiarissimo;
+    }
+}
+
+.empty {
+    font-style: italic;
+}

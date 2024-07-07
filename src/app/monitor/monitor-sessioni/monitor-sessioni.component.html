@@ -1,0 +1,36 @@
+<div class="white-box">
+    <ng-container *ngIf="datiCaricati; else Loading">
+        <ng-container *ngIf="sessioni.length>0;else Empty">
+            <table class="session-list" mat-table [dataSource]="sessioni">
+                <ng-container matColumnDef="data">
+                    <th mat-header-cell *matHeaderCellDef>Data</th>
+                    <td mat-cell *matCellDef="let sessione">{{ sessione.data | date:'dd/MM/yyyy HH:mm' }}</td>
+                </ng-container>
+                <ng-container matColumnDef="quartiere">
+                    <th mat-header-cell *matHeaderCellDef>Quartiere</th>
+                    <td mat-cell *matCellDef="let sessione">{{ sessione.quartiere?.replaceAll('_',' ') }}</td>
+                </ng-container>
+                <ng-container matColumnDef="tempo_netto">
+                    <th mat-header-cell *matHeaderCellDef>Tempo netto (min)</th>
+                    <td mat-cell *matCellDef="let sessione">{{ sessione.tempoNetto }}</td>
+                </ng-container>
+                <ng-container matColumnDef="completata">
+                    <th mat-header-cell *matHeaderCellDef>Completata</th>
+                    <td mat-cell *matCellDef="let sessione">{{ sessione.completata ? 'Si' : 'No' }}</td>
+                </ng-container>
+                <ng-container matColumnDef="score">
+                    <th mat-header-cell *matHeaderCellDef>Punteggio</th>
+                    <td mat-cell *matCellDef="let sessione">{{ sessione.score }}</td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+            </table>
+        </ng-container>
+        <ng-template #Empty>
+            <div class="empty">Nessuna sessione presente</div>
+        </ng-template>
+    </ng-container>
+</div>
+<ng-template #Loading>
+    <app-loading></app-loading>
+</ng-template>

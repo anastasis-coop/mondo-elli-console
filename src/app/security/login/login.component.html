@@ -1,0 +1,29 @@
+<ng-container *ngIf="!isLoggedIn; else loading">
+    <div class="layout">
+        <div class="header"></div>
+        <div class="white-box login-box">
+            <div class="privacy">
+                <a href="https://privacy.example.com" target="_blank">Privacy</a>
+            </div>
+            <form class="login-form" *ngIf="formGroup" [formGroup]="formGroup">
+                <mat-form-field appearance="outline">
+                    <mat-label>Email / Username</mat-label>
+                    <input matInput formControlName="username" type="email" [pattern]="emailPattern" required>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" autocomplete="current-password" required>
+                    <mat-icon (click)="hide=!hide">visibility{{ hide ? '':'_off' }}</mat-icon>
+                </mat-form-field>
+                <button mat-flat-button (click)="signIn()" color="primary">Accedi</button>
+                <a class="lost-password" (click)="lostPassword()">Password dimenticata?</a>
+                <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+            </form>
+        </div>
+        <div class="footer">
+        </div>
+    </div>
+</ng-container>
+<ng-template #loading>
+    <app-loading></app-loading>
+</ng-template>

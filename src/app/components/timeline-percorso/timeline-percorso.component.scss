@@ -1,0 +1,39 @@
+.timeline {
+    display: flex;
+    flex-direction: column;
+    min-width: 800px;
+    height: 425px;
+
+    .slider {
+        display: flex;
+        margin: 40px 2px 0;
+
+        mat-slider {
+            width: 100%;
+        }
+    }
+
+    .hint {
+        margin: -5px 10px 10px;
+    }
+
+    .periodi {
+        margin: 0 10px;
+        display: flex;
+        height: 30px;
+
+        .periodo {
+            height: 100%;
+        }
+    }
+
+    app-agenda-percorso {
+        width: 60%;
+        margin: 10px auto 0;
+    }
+
+    .empty {
+        font-style: italic;
+        text-align: center;
+    }
+}

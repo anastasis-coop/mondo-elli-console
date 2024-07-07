@@ -1,0 +1,32 @@
+@import '../../../../styles/colors.scss';
+
+.materiali {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border-bottom: transparent solid 1px;
+        padding: 10px;
+        color: black;
+        text-decoration: none;
+
+        .link {
+            font-size: 16px;
+            color: $blu-scuro;
+        }
+
+        &:hover {
+            cursor: pointer;
+            background-color: $azzurro-chiarissimo;
+
+            .link {
+                color: $blu-chiaro;
+                text-decoration: underline;
+            }
+        }
+    }
+}

@@ -1,0 +1,64 @@
+<ng-container *ngIf="showPercorso; else Percorsi">
+    <button mat-icon-button class="back-button" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+    <ng-container *ngIf="datiCaricati; else LoadingPercorso">
+        <app-gestione-percorso [archivio]="false" [centro]="centro" [referente]="referente" [percorso]="percorso" (reloadCentro)="reloadCentro()"></app-gestione-percorso>
+    </ng-container>
+    <ng-template #LoadingPercorso>
+        <div class="loading-percorso white-box content-box">
+            <app-loading></app-loading>
+        </div>
+    </ng-template>
+</ng-container>
+<ng-template #Percorsi>
+    <div class="header">
+        <div class="title">Percorsi di gruppo</div>
+        <ng-container *ngIf="referente && datiCaricati">
+            <button mat-flat-button color="accent" (click)="createPercorsoGruppo()">
+                <mat-icon>add</mat-icon>Aggiungi percorso
+            </button>
+        </ng-container>
+    </div>
+    <div class="white-box content-box">
+        <ng-container *ngIf="datiCaricati; else Loading">
+            <ng-container *ngIf="percorsiOperatore.length>0; else NoData">
+                <app-table-percorsi-operatore #TablePercorsiOperatoreGruppo *ngIf="percorsiOperatoreGruppo" tipo="GRUPPO" [percorsi]="percorsiOperatoreGruppo" [selectable]="true" (selected)="selectPercorso($event)"
+                    (onArchive)="archiviaPercorso($event)"></app-table-percorsi-operatore>
+            </ng-container>
+            <ng-template #NoData>
+                <div class="no-groups">
+                    <img src="/assets/ui/banco.png">
+                    <div class="title">Non hai nessun percorso assegnato.</div>
+                    <div class="subtitle" *ngIf="referente">Premi il bottone <strong>AGGIUNGI PERCORSO</strong> per crearne uno.</div>
+                    <div class="subtitle" *ngIf="!referente">Chiedi al referente del centro di assegnartene almeno uno.</div>
+                </div>
+            </ng-template>
+        </ng-container>
+    </div>
+    <div class="header">
+        <div class="title">Percorsi individuali</div>
+        <ng-container *ngIf="referente && datiCaricati">
+            <button mat-flat-button color="accent" *ngIf="centro" (click)="createPercorsoSingolo()">
+                <mat-icon>add</mat-icon>Aggiungi percorso
+            </button>
+        </ng-container>
+    </div>
+    <div class="white-box content-box">
+        <ng-container *ngIf="datiCaricati; else Loading">
+            <ng-container *ngIf="percorsiOperatore.length>0; else NoData">
+                <app-table-percorsi-operatore #TablePercorsiOperatoreSingoli *ngIf="percorsiOperatoreSingoli" tipo="SINGOLO" [percorsi]="percorsiOperatoreSingoli" [selectable]="true" (selected)="selectPercorso($event)"
+                    (onArchive)="archiviaPercorso($event)"></app-table-percorsi-operatore>
+            </ng-container>
+            <ng-template #NoData>
+                <div class=" no-groups">
+                    <img src="/assets/ui/banco.png">
+                    <div class="title">Non hai nessun percorso assegnato.</div>
+                    <div class="subtitle" *ngIf="referente">Premi il bottone <strong>AGGIUNGI PERCORSO</strong> per crearne uno.</div>
+                    <div class="subtitle" *ngIf="!referente">Chiedi al referente del centro di assegnartene almeno uno.</div>
+                </div>
+            </ng-template>
+        </ng-container>
+    </div>
+</ng-template>
+<ng-template #Loading>
+    <app-loading></app-loading>
+</ng-template>

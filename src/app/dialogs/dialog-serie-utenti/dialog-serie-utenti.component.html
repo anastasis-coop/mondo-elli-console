@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Aggiungi utenti</h2>
+<mat-dialog-content>
+    <form [formGroup]="formUtenti">
+        <div class="row">
+            <mat-form-field appearance="outline" class="prefisso-username">
+                <mat-label>Prefisso username</mat-label>
+                <input matInput type="text" formControlName="prefissoUsername" minlength="4" maxlength="23">
+                <mat-error *ngIf="testError('prefissoUsername','minlength')">Troppo corto, minimo 4 caratteri</mat-error>
+                <mat-error *ngIf="testError('prefissoUsername','username') && !testError('prefissoUsername','minlength')">Ammessi solo caratteri alfanumerici e trattini bassi</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="numero-utenti">
+                <mat-label>Numero di utenti</mat-label>
+                <input matInput type="number" formControlName="numeroUtenti" min="1">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="password">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" minlength="4" maxlength="25">
+                <mat-icon (click)="hide=!hide">visibility{{ hide ? '':'_off' }}</mat-icon>
+                <mat-error *ngIf="testError('password','minlength')">Troppo corto, minimo 4 caratteri</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="indice-primo">
+                <mat-label>Indice primo utente</mat-label>
+                <input matInput type="number" formControlName="indicePrimoUtente" min="1">
+            </mat-form-field>
+        </div>
+    </form>
+    <div *ngIf="data?.gruppoVuoto">
+        Il gruppo non ha ancora utenti, quindi verrà creato anche <strong>un utente con indice 00</strong> per l'operatore che segue il gruppo.
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-flat-button mat-dialog-close>Annulla</button>
+    <button mat-flat-button color="primary" [disabled]="formUtenti.invalid" (click)="confirm()">Ok</button>
+</mat-dialog-actions>

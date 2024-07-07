@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Seleziona percorsi</h2>
+<mat-dialog-content>
+    <mat-selection-list (selectionChange)="listChanged($event)">
+        <mat-list-option *ngFor="let percorso of data.percorsiCentro" [value]="percorso.id" [selected]="data.percorsiOperatore.includes(percorso.id)" checkboxPosition="before">
+            <div class="percorso">
+                <div class="nome">{{ percorso.nome }}</div>
+                <div class="tipo">{{ getDescrizioneTipo(percorso.tipo) }}</div>
+            </div>
+        </mat-list-option>
+    </mat-selection-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-flat-button mat-dialog-close>Annulla</button>
+    <button mat-flat-button color="primary" (click)="confirm()">Ok</button>
+</mat-dialog-actions>

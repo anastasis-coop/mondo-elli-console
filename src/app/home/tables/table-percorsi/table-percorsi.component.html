@@ -1,0 +1,38 @@
+<ng-container *ngIf="percorsi.length>0; else NoData">
+    <table mat-table *ngIf="dataSource" [dataSource]="dataSource" matSort [class.selectable]="selectable">
+
+        <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Nome percorso
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.nome }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="operatori">
+            <th mat-header-cell *matHeaderCellDef>
+                Operatori
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="editOperatori(element)"><mat-icon>groups</mat-icon></button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef>
+                Modifica
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="edit(element)"><mat-icon>edit</mat-icon></button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></tr>
+    </table>
+</ng-container>
+<ng-template #NoData>
+    <div class="no-data">Nessun percorso
+        <span *ngIf="tipo=='GRUPPO'">di gruppo</span>
+        <span *ngIf="tipo=='SINGOLO'">individuale</span>
+    </div>
+</ng-template>

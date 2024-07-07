@@ -1,0 +1,30 @@
+<div class="form-box">
+  <form [formGroup]="formOperatore">
+    <div class="row">
+      <mat-form-field appearance="outline" class="col">
+        <mat-label>Id</mat-label>
+        <input matInput type="number" formControlName="id" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col">
+        <mat-label>Email</mat-label>
+        <input matInput type="text" formControlName="username" />
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline" class="col">
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" formControlName="nome" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col">
+        <mat-label>Cognome</mat-label>
+        <input matInput type="text" formControlName="cognome" />
+      </mat-form-field>
+    </div>
+  </form>
+  <div class="bottoni">
+    <button mat-flat-button color="primary" (click)="cerca()">Cerca</button>
+    <button mat-flat-button color="primary" (click)="pulisci()" *ngIf="showPulisci">
+      <mat-icon>close</mat-icon>Pulisci ricerca
+    </button>
+  </div>
+</div>

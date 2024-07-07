@@ -1,0 +1,11 @@
+<div class="title">Assistenza</div>
+<div class="white-box assistenza">
+    <div>Puoi ricevere assistenza inviando un messaggio con la descrizione del problema:</div>
+    <mat-form-field appearance="outline" *ngIf="showForm">
+        <mat-label>Qual è il problema che hai riscontrato?</mat-label>
+        <textarea matInput required [(ngModel)]="testoMessaggio" rows="8"></textarea>
+    </mat-form-field>
+    <div class="invia">
+        <button mat-flat-button color="primary" [disabled]="testoMessaggio == ''" (click)="invia()">Invia</button>
+    </div>
+</div>

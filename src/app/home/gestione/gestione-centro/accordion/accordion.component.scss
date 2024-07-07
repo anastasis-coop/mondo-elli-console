@@ -1,0 +1,27 @@
+.accordion {
+    max-height: 30px;
+    overflow: hidden;
+    padding: 0;
+    transition: max-height 500ms ease-in-out;
+
+    .top-band {
+        cursor: pointer;
+
+        user-select: none;
+        -ms-user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+
+        height: 30px;
+        padding: 0 20px;
+        font-size: 15px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    &.expanded {
+        max-height: 1000px;
+    }
+}

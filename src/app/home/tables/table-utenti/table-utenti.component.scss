@@ -1,0 +1,37 @@
+@import '../../../../styles/colors.scss';
+
+table {
+    .mat-column-facilitato {
+        text-align: center;
+    }
+
+    .mat-column-password {
+        text-align: center;
+    }
+
+    .eye {
+        display: inline-block;
+        position: relative;
+        width: 30px;
+        height: 16px;
+
+        mat-icon {
+            position: absolute;
+            left: 2px;
+            top: -1px;
+        }
+    }
+
+    .utente-operatore {
+        background-color: $azzurro-chiarissimo;
+    }
+
+    .mat-column-play {
+        button[disabled] {
+            mat-icon {
+                color: gray;
+            }
+        }
+    }
+
+}

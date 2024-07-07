@@ -1,0 +1,20 @@
+<ng-container *ngIf="datiCaricati; else Loading">
+    <app-sidebar [menu]="sidebarMenu" [current]="current" (selected)="sidebarSelect($event)"></app-sidebar>
+    <ng-container *ngIf="current==0">
+        <app-gestione-percorsi #GestionePercorsi [centro]="centro" [referente]="operatore!.referente"></app-gestione-percorsi>
+    </ng-container>
+    <ng-container *ngIf="current==1">
+        <div class="fullwidth">
+            <app-materiali></app-materiali>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="current==2">
+        <app-gestione-archivio #GestionePercorsi [centro]="centro" [referente]="operatore!.referente"></app-gestione-archivio>
+    </ng-container>
+    <ng-container *ngIf="current==3">
+        <app-gestione-centro #GestioneCentro [centro]="centro" [referente]="operatore!.referente"></app-gestione-centro>
+    </ng-container>
+</ng-container>
+<ng-template #Loading>
+    <app-loading></app-loading>
+</ng-template>

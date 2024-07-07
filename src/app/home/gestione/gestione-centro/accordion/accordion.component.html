@@ -1,0 +1,11 @@
+<div class="header">
+    <div class="title">{{ title }}</div>
+</div>
+<div class="accordion white-box content-box" [class.expanded]="expanded">
+    <div class="top-band" (click)="expanded=!expanded">
+        <a>{{ expanded ? 'nascondi' : 'vedi' }} {{ subject }}</a>
+    </div>
+    <div class="content">
+        <ng-content></ng-content>
+    </div>
+</div>

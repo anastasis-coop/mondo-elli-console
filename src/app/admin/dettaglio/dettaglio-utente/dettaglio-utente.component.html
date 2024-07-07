@@ -1,0 +1,43 @@
+<div class="main-container">
+    <ng-container *ngIf="datiCaricati; else Loading">
+        <ng-container *ngIf="utente; else NonTrovato">
+            <div class="title-box">
+                <div class="title">Dettaglio utente {{ utente.id }}</div>
+            </div>
+            <div class="white-box detail">
+                <div class="subtitle-row">
+                    <div class="subtitle">
+                        <mat-icon class="icon">face</mat-icon>
+                        Utente {{ utente.username }}
+                    </div>
+                </div>
+                <div class="property">
+                    <div class="label">Username</div>
+                    <div class="value">{{ utente.username }}</div>
+                </div>
+                <div class="property">
+                    <div class="label">Facilitato (livello 0)</div>
+                    <div class="value">{{ utente.facilitato?'SI':'NO' }}</div>
+                </div>
+                <div class="property" *ngIf="percorso">
+                    <div class="label">Percorso</div>
+                    <div class="value"><a (click)="gotoPercorso(percorso.id)">{{ percorso.nome }}</a></div>
+                </div>
+            </div>
+            <div class="actions-row">
+                <button mat-flat-button color="primary" (click)="editUtente()"><mat-icon class="icon">edit</mat-icon>Modifica utente</button>
+            </div>
+        </ng-container>
+    </ng-container>
+    <ng-template #NonTrovato>
+        <div class="not-found subtitle-row">
+            <div class="subtitle">
+                <mat-icon class="icon">face</mat-icon>
+                Utente non trovato
+            </div>
+        </div>
+    </ng-template>
+</div>
+<ng-template #Loading>
+    <app-loading></app-loading>
+</ng-template>

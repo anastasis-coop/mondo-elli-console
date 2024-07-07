@@ -1,0 +1,17 @@
+@import '../../../styles/colors.scss';
+
+.sidebar {
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    button {
+        justify-content: left;
+        background-color: $azzurro-chiaro;
+
+        &.selected {
+            background-color: white;
+        }
+    }
+}

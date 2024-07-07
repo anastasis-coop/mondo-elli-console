@@ -1,0 +1,43 @@
+:host {
+    width: 100%;
+}
+
+.exploration-list {
+    width: 100%;
+
+    .mat-column-inizio {
+        width: 25%;
+    }
+
+    .mat-column-quartiere {
+        width: 35%;
+    }
+
+    .mat-column-corretto {
+        width: 5%;
+    }
+
+    .mat-column-finale {
+        width: 5%;
+    }
+
+    .mat-column-tempo-impiegato {
+        width: 10%;
+    }
+
+    .mat-column-ombra {
+        width: 5%;
+
+        img {
+            width: 24px;
+        }
+    }
+
+    .mat-column-prospettiva {
+        width: 15%;
+    }
+}
+
+.empty {
+    font-style: italic;
+}

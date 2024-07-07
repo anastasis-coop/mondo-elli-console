@@ -1,0 +1,21 @@
+<div class="title">Agenda del percorso<span *ngIf="futuro"> DA OGGI</span></div>
+<ng-container *ngIf="periodiFiltrati.length>0; else Empty">
+    <table>
+        <tr *ngFor="let periodo of periodiFiltrati">
+            <td class="periodo" [ngClass]="periodo.quartiere"></td>
+            <ng-container *ngIf="isIntroduzione(periodo.quartiere); else QuartiereStandard">
+                <td class="label">Introduzione al <strong>Coding</strong></td>
+            </ng-container>
+            <ng-template #QuartiereStandard>
+                <td class="label">Quartiere <strong>{{ getLabel(periodo.quartiere) }}</strong></td>
+            </ng-template>
+            <td class="dal">dal</td>
+            <td class="inizio">{{ periodo.inizio | date:'dd/MM/yyyy' }}</td>
+            <td class="dal">al</td>
+            <td class="fine">{{ periodo.fine | date:'dd/MM/yyyy' }}</td>
+        </tr>
+    </table>
+</ng-container>
+<ng-template #Empty>
+    <div class="empty">Nessuna attività pianificata</div>
+</ng-template>

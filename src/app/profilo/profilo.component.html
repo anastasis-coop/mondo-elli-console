@@ -1,0 +1,30 @@
+<div class="header">
+    <div class="title">Il mio profilo</div>
+</div>
+<div class="white-box profilo">
+    <ng-container *ngIf="profilo && datiCaricati; else Loading">
+        <div class="row">
+            <div class="key">Nome e cognome</div>
+            <div class="val">{{ profilo.nome }} {{ profilo.cognome }}</div>
+            <div class="act"><button mat-flat-button color="primary" (click)="modificaDati()"><mat-icon>edit</mat-icon>Modifica</button></div>
+        </div>
+        <div class="row">
+            <div class="key">Email</div>
+            <div class="val">{{ profilo.username }}</div>
+            <div class="act"><button mat-flat-button color="primary" (click)="modificaEmail()"><mat-icon>edit</mat-icon>Modifica</button></div>
+        </div>
+        <div class="row">
+            <div class="key">Password</div>
+            <div class="val">Ultima modifica {{ profilo.dataCreazionePassword | date:'dd/MM/yyyy' }}</div>
+            <div class="act"><button mat-flat-button color="primary" (click)="cambioPassword()"><mat-icon>edit</mat-icon>Modifica</button></div>
+        </div>
+        <div class="row">
+            <div class="key">Referente</div>
+            <div class="val">{{ profilo.referente?'SI':'NO' }}</div>
+            <div class="act"></div>
+        </div>
+    </ng-container>
+    <ng-template #Loading>
+        <app-loading></app-loading>
+    </ng-template>
+</div>

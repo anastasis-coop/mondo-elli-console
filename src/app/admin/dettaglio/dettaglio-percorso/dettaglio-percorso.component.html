@@ -1,0 +1,93 @@
+<div class="main-container">
+    <ng-container *ngIf="datiCaricati; else Loading">
+        <ng-container *ngIf="percorso; else NonTrovato">
+            <div class="title-box">
+                <div class="title">Dettaglio percorso {{ percorso.id }}</div>
+            </div>
+            <div class="white-box detail">
+                <div class="subtitle-row">
+                    <div class="subtitle">
+                        <mat-icon class="icon">directions_run</mat-icon>
+                        Percorso {{ percorso.nome }}
+                    </div>
+                </div>
+                <div class="property">
+                    <div class="label">Tipo</div>
+                    <div class="value">{{ percorso.tipo }}</div>
+                </div>
+                <div class="property">
+                    <div class="label">Nome</div>
+                    <div class="value">{{ percorso.nome }}</div>
+                </div>
+                <div class="property">
+                    <div class="label">Media Literacy</div>
+                    <div class="value">{{ percorso.mediaLiteracy ? 'SI':'NO' }}</div>
+                    <a class="link" (click)="toggleMediaLiteracy()">{{ percorso.mediaLiteracy ? 'disattiva':'attiva' }}</a>
+                </div>
+                <div class="property">
+                    <div class="label">Archiviato</div>
+                    <div class="value">{{ percorso.archiviato ? 'SI':'NO' }}</div>
+                    <a class="link" (click)="toggleArchiviazione()">{{ percorso.archiviato ? 'ripristina':'archivia' }}</a>
+                </div>
+                <div class="property" *ngIf="centro">
+                    <div class="label">Centro</div>
+                    <div class="value"><a (click)="gotoCentro(centro.id)">{{ centro.nome }}</a></div>
+                </div>
+            </div>
+            <div class="actions-row">
+                <button mat-flat-button color="primary" (click)="editPercorso()"><mat-icon class="icon">edit</mat-icon>Modifica percorso</button>
+            </div>
+            <div class="white-box detail">
+                <div class="subtitle-row">
+                    <div class="subtitle">
+                        <mat-icon class="icon">supervisor_account</mat-icon>
+                        Operatori
+                    </div>
+                </div>
+                <ng-container *ngIf="operatori.length>0; else NessunOperatore">
+                    <div class="property" *ngFor="let operatore of operatori">
+                        <div class="label">{{ operatore.username }}</div>
+                        <div class="value"><a (click)="gotoOperatore(operatore.id)">{{ operatore.nome }} {{ operatore.cognome }}</a></div>
+                    </div>
+                </ng-container>
+                <ng-template #NessunOperatore>
+                    <div class="no-data">Nessun operatore da visualizzare</div>
+                </ng-template>
+            </div>
+            <div class="actions-row">
+                <button mat-flat-button color="primary" (click)="selectOperatori()">Seleziona operatori</button>
+            </div>
+            <div class="white-box detail">
+                <div class="subtitle-row">
+                    <div class="subtitle">
+                        <mat-icon class="icon">face</mat-icon>
+                        Utenti
+                    </div>
+                </div>
+                <ng-container *ngIf="utenti.length>0; else NessunUtente">
+                    <div class="property" *ngFor="let utente of utenti">
+                        <div class="label">Username</div>
+                        <div class="value"><a (click)="gotoUtente(utente.id!)">{{ utente.username }}</a></div>
+                    </div>
+                </ng-container>
+                <ng-template #NessunUtente>
+                    <div class="no-data">Nessun utente da visualizzare</div>
+                </ng-template>
+            </div>
+            <div class="actions-row">
+                <button mat-flat-button color="primary" (click)="createUtente()">Crea nuovo utente</button>
+            </div>
+        </ng-container>
+    </ng-container>
+    <ng-template #NonTrovato>
+        <div class="not-found subtitle-row">
+            <div class="subtitle">
+                <mat-icon class="icon">directions_run</mat-icon>
+                Percorso non trovato
+            </div>
+        </div>
+    </ng-template>
+</div>
+<ng-template #Loading>
+    <app-loading></app-loading>
+</ng-template>

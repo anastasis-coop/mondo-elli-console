@@ -1,0 +1,80 @@
+<ng-container *ngIf="percorso">
+    <ng-container *ngIf="archivio; else PercorsoStandard">
+        <div class="header">
+            <div class="title">{{ percorso.nome }}</div>
+        </div>
+        <div class="white-box content-box">
+            <div>
+                <strong>Tipo:</strong>
+                <span *ngIf="percorso.tipo=='GRUPPO'"> percorso di gruppo</span>
+                <span *ngIf="percorso.tipo=='SINGOLO'"> percorso individuale</span>
+            </div>
+            <div><strong>Inizio:</strong> {{ percorso.inizioPercorso | date:'dd/MM/yyyy' }}</div>
+            <div><strong>Fine:</strong> {{ percorso.finePercorso | date:'dd/MM/yyyy' }}</div>
+            <div>
+                <strong>Durata:</strong>
+                <span *ngIf="percorso.durataFunzioneEsecutivaGiorni==7"> STANDARD (1 settimana per quartiere)</span>
+                <span *ngIf="percorso.durataFunzioneEsecutivaGiorni==14"> INTENSIVO (2 settimane per quartiere)</span>
+            </div>
+            <div>
+                <strong>Introduzione al CODING:</strong> {{ percorso.periodoIntroduzione ? 'SI' : 'NO'}}
+            </div>
+            <div>
+                <strong>Quartiere Media Literacy:</strong> {{ percorso.mediaLiteracy ? 'SI' : 'NO'}}
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #PercorsoStandard>
+        <div class="header">
+            <div class="title">{{ percorso.nome }}</div>
+            <button mat-flat-button color="accent" (click)="editPercorso()">Modifica</button>
+        </div>
+        <div class="white-box content-box" [ngSwitch]="percorso.stato">
+            <ng-container *ngSwitchCase="'NON_INIZIATO'">
+                <div class="stato-percorso">
+                    Il percorso inizierà il giorno {{ periodi[0].inizio | date:'dd/MM/yyyy' }}
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'IN_CORSO'">
+                <div class="agenda">
+                    <app-agenda-percorso [periodi]="periodi" [futuro]="true"></app-agenda-percorso>
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'TERMINATO'">
+                <div class="stato-percorso">
+                    Il percorso è terminato il giorno {{ percorso.finePercorso | date:'dd/MM/yyyy' }}
+                </div>
+            </ng-container>
+        </div>
+    </ng-template>
+    <div class="header">
+        <ng-container *ngIf="percorso.tipo=='GRUPPO'">
+            <div class="title">Utenti</div>
+            <ng-container *ngIf="!archivio">
+                <button mat-flat-button color="accent" (click)="createSerieUtenti()"><mat-icon>add</mat-icon>Aggiungi utenti</button>
+                <button mat-flat-button color="accent" (click)="createUtente()"><mat-icon>add</mat-icon>Aggiungi utente</button>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngIf="percorso.tipo=='SINGOLO'">
+            <div class="title">Utente percorso individuale</div>
+            <button mat-flat-button color="accent" *ngIf="!archivio && utentiPercorso.length==0" (click)="createUtente()"><mat-icon>add</mat-icon>Aggiungi utente</button>
+        </ng-container>
+    </div>
+    <div class="white-box content-box">
+        <ng-container *ngIf="datiCaricati; else Loading">
+            <app-table-utenti #TableUtenti [archivio]="archivio" [utenti]="utentiPercorso" [selectable]="true" (selected)="selectUtente($event)" (onPlay)="playUtente($event)" [statoPercorso]="percorso.stato"></app-table-utenti>
+        </ng-container>
+    </div>
+    <div class="header">
+        <div class="title">Operatori assegnati</div>
+        <button mat-flat-button color="accent" *ngIf="referente && !archivio" (click)="selectOperatori()"><mat-icon>supervisor_account</mat-icon>Assegna operatori</button>
+    </div>
+    <div class="white-box content-box">
+        <ng-container *ngIf="datiCaricati; else Loading">
+            <app-table-operatori #TableOperatori [operatori]="operatoriPercorso"></app-table-operatori>
+        </ng-container>
+    </div>
+</ng-container>
+<ng-template #Loading>
+    <app-loading></app-loading>
+</ng-template>

@@ -1,0 +1,48 @@
+@import '../../styles/colors.scss';
+
+:host {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.big-icon {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.monitor {
+    position: relative;
+    flex: auto;
+
+    .back-button {
+        position: absolute;
+        color: $blu;
+        left: -28px;
+        top: -7px;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+        color: $blu-scuro;
+        margin-bottom: 10px;
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            flex: auto;
+            padding-left: 20px;
+        }
+    }
+
+    .content-box {
+        line-height: 2;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+}

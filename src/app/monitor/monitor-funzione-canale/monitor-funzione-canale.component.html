@@ -1,0 +1,46 @@
+<ng-container *ngIf="canale">
+    <div class="header">
+        <div class="header-canale">Canale: {{ channelToString(canale.canale) }}</div>
+        <div class="header-livello-raggiunto" *ngIf="canale.esercizi.length>0">Livello raggiunto: {{
+            levelToNumber(canale.livelloRaggiunto) }}</div>
+    </div>
+    <ng-container *ngIf="canale.esercizi.length>0;else Empty">
+        <div class="white-box">
+            <table class="exercises-list" mat-table [dataSource]="canale.esercizi">
+                <ng-container matColumnDef="data">
+                    <th mat-header-cell *matHeaderCellDef>Data</th>
+                    <td mat-cell *matCellDef="let esercizio">{{ esercizio.fine | date:'dd/MM/yyyy HH:mm' }}</td>
+                </ng-container>
+                <ng-container matColumnDef="livello">
+                    <th mat-header-cell *matHeaderCellDef>Livello</th>
+                    <td mat-cell *matCellDef="let esercizio">{{ levelToString(esercizio.livello) }}</td>
+                </ng-container>
+                <ng-container matColumnDef="corretti">
+                    <th mat-header-cell *matHeaderCellDef>Corretti</th>
+                    <td mat-cell *matCellDef="let esercizio">{{ esercizio.numeroStimoliCorretti }}</td>
+                </ng-container>
+                <ng-container matColumnDef="errati">
+                    <th mat-header-cell *matHeaderCellDef>Errati</th>
+                    <td mat-cell *matCellDef="let esercizio">{{ esercizio.numeroStimoliErrati }}</td>
+                </ng-container>
+                <ng-container matColumnDef="saltati">
+                    <th mat-header-cell *matHeaderCellDef>Saltati</th>
+                    <td mat-cell *matCellDef="let esercizio">{{ esercizio.numeroStimoliSaltati }}</td>
+                </ng-container>
+                <ng-container matColumnDef="accuratezza">
+                    <th mat-header-cell *matHeaderCellDef>Accuratezza</th>
+                    <td mat-cell *matCellDef="let esercizio">{{ esercizio.accuratezza }}%</td>
+                </ng-container>
+                <ng-container matColumnDef="stato-livello">
+                    <th mat-header-cell *matHeaderCellDef>Stato livello</th>
+                    <td mat-cell *matCellDef="let esercizio">{{ statusToString(esercizio.statoLivello).replaceAll('_','&nbsp;') }}</td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+            </table>
+        </div>
+    </ng-container>
+    <ng-template #Empty>
+        <div class="white-box empty">Nessun esercizio presente</div>
+    </ng-template>
+</ng-container>

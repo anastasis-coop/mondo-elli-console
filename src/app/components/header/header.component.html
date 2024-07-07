@@ -1,0 +1,19 @@
+<div class="topline"></div>
+<div class="toolbar">
+    <div class="logo-title" (click)="logoClicked()">
+        <div class="logo"></div>
+        <div class="title-subtitle">
+            <div class="title">Il mondo degli Elli</div>
+            <div class="subtitle">Un viaggio nelle Funzioni Esecutive</div>
+        </div>
+    </div>
+    <ng-container>
+        <button class="main-menu" mat-button [matMenuTriggerFor]="menu">{{ username }}<mat-icon iconPositionEnd>expand_more</mat-icon></button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item class="mat-menu-item" (click)="goto('profilo')"><mat-icon>account_circle</mat-icon>Il mio profilo</button>
+            <button mat-menu-item class="mat-menu-item" (click)="goto('assistenza')"><mat-icon>headset_mic</mat-icon>Assistenza</button>
+            <button mat-menu-item class="mat-menu-item" (click)="gotoPrivacy()"><mat-icon>privacy_tip</mat-icon>Privacy</button>
+            <button mat-menu-item class="mat-menu-item" (click)="goto('auth/logout')"><mat-icon>logout</mat-icon>Esci</button>
+        </mat-menu>
+    </ng-container>
+</div>

@@ -1,0 +1,59 @@
+@import '../../styles/colors.scss';
+
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    color: $blu-scuro;
+    margin-bottom: 10px;
+
+    .title {
+        font-size: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+        flex: auto;
+        padding-left: 20px;
+    }
+
+    .subtitle {
+        font-weight: bold;
+    }
+}
+
+.profilo {
+    font-size: 20px;
+
+    .row {
+        display: flex;
+        margin-bottom: 20px;
+
+        .key {
+            flex: 1;
+            font-weight: bold;
+        }
+
+        .val {
+            flex: 3;
+        }
+
+        .act {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+
+            button {
+                min-width: 150px;
+            }
+
+            mat-icon {
+                color: white;
+            }
+        }
+    }
+}

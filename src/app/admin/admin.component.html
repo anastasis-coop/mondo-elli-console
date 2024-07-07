@@ -1,0 +1,19 @@
+<div class="page">
+    <div class="crea-centro">
+        <button mat-flat-button color="primary" (click)="createCentro()">Crea nuovo centro</button>
+    </div>
+    <mat-tab-group class="white-box">
+        <mat-tab label="Centri">
+            <app-search-centri [showPulisci]="centriSearched" (onCerca)="cercaCentri($event)" (onPulisci)="centriSearched = false"></app-search-centri>
+            <app-admin-table-centri [hidden]="!centriSearched" [queryCentro]="queryCentro" (onSelect)="selectedCentro($event)"></app-admin-table-centri>
+        </mat-tab>
+        <mat-tab label="Operatori">
+            <app-search-operatori [showPulisci]="operatoriSearched" (onCerca)="cercaOperatori($event)" (onPulisci)="operatoriSearched = false"></app-search-operatori>
+            <app-admin-table-operatori [hidden]="!operatoriSearched" [queryOperatore]="queryOperatore" (onSelect)="selectedOperatore($event)"></app-admin-table-operatori>
+        </mat-tab>
+        <mat-tab label="Utenti">
+            <app-search-utenti [showPulisci]="utentiSearched" (onCerca)="cercaUtenti($event)" (onPulisci)="utentiSearched = false"></app-search-utenti>
+            <app-admin-table-utenti [hidden]="!utentiSearched" [queryUtente]="queryUtente" (onSelect)="selectedUtente($event)"></app-admin-table-utenti>
+        </mat-tab>
+    </mat-tab-group>
+</div>

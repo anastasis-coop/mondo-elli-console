@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>{{ editMode ? 'Modifica' : 'Aggiungi' }} utente</h2>
+<mat-dialog-content>
+    <form [formGroup]="formUtente">
+        <div class="row">
+            <mat-form-field appearance="outline" class="username">
+                <mat-label>Username</mat-label>
+                <input matInput type="text" formControlName="username" minlength="4" maxlength="25">
+                <mat-error *ngIf="testError('username','minlength')">Troppo corto, minimo 4 caratteri</mat-error>
+                <mat-error *ngIf="testError('username','username') && !testError('username','minlength')">Ammessi solo caratteri alfanumerici e trattini bassi</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="password">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" minlength="4" maxlength="25">
+                <mat-icon (click)="hide=!hide">visibility{{ hide ? '':'_off' }}</mat-icon>
+                <mat-error *ngIf="testError('password','minlength')">Troppo corto, minimo 4 caratteri</mat-error>
+            </mat-form-field>
+        </div>
+        <mat-slide-toggle color="primary" formControlName="facilitato">&nbsp;Facilitato (livello 0)</mat-slide-toggle>
+    </form>
+    <div class="gruppo-vuoto" *ngIf="data?.gruppoVuoto">
+        Il gruppo non ha ancora utenti, il primo utente è riservato all'operatore che segue il gruppo.
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-flat-button *ngIf="isAdmin && editMode" (click)="deleteUtente()"><mat-icon>delete</mat-icon>Elimina</button>
+    <button mat-flat-button mat-dialog-close>Annulla</button>
+    <button mat-flat-button color="primary" [disabled]="formUtente.invalid" (click)="confirm()">Ok</button>
+</mat-dialog-actions>
