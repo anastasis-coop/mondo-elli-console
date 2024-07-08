@@ -7,7 +7,7 @@ npm 10
 
 npm install
 
-# Run
+# Esecuzione
 
 npm start
 
