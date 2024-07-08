@@ -1,6 +1,7 @@
 # Prerequisiti
 
 node 20
+
 npm 10
 
 # Installazione
