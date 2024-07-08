@@ -1,13 +1,13 @@
-# REQUISITI
+# Prerequisiti
 
 node 20
 npm 10
 
-# INSTALLAZIONE
+# Installazione
 
 npm install
 
-# RUN
+# Run
 
 npm start
 
